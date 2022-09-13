@@ -217,4 +217,4 @@ tareas.forEach(tarea=>{
 
 
 
-// En la próxima entrega se completarán las demás opciones de la página, además de profundizar en el horario cuando tenga que poner en práctica eventos.
+// En la próxima entrega se completarán las demás opciones de la página, además de profundizar en el horario cuando tenga que poner en práctica eventos. Realmente no tuve tiempo para aplicarle muchas más cosas de las que ya tenía armadas antes de DOM, pero para la próxima entrega planeo tener mucho más implementado.
