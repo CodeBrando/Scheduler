@@ -38,6 +38,10 @@ function calcularTiempoLibre(horasUsadas){
     return tiempoLibre
 }
 
+function agregarTareas(tarea){
+    tareas.push(tarea)
+    return tareas;
+}
 
 // function compare(a, b) {
 //     if ( a.hora < b.hora ){
@@ -50,19 +54,15 @@ function calcularTiempoLibre(horasUsadas){
 // }
 
 let tareasOrdenadas = tareas.sort((obj1, obj2)=>obj1.hora - obj2.hora) 
-// No estoy pudiendo ordenar la lista por hora, no entiendo por qué no puedo hacer que la menor hora aparezca antes en la lista
 
 
-function agregarTareas(tarea){
-    tareas.push(tarea)
-    return tareas;
-}
+
 
 
 
 const pasearAlPerro = new Tarea("Pasear al perro", "Pasear al perro por el barrio durante aproximadamente media hora.", "Llevar bolsas de nylon.")
 const estudiar = new Tarea("Estudiar", "Ponerse al día con las clases sin ver hasta el momento; practicar al menos una vez lo ya visto.", "Chequear qur no haya desafíos por entregar.")
-const ocio = new Tarea("Tiempo libre", "Tiempo de descanso  hasta la próxima tarea", "Ponerse al día con dailies en varios juegos.")
+const ocio = new Tarea("Ocio", "Tiempo de descanso  hasta la próxima tarea", "Ponerse al día con dailies en varios juegos.")
 let nuevaTarea = new Tarea()
 
 tareas.push(pasearAlPerro, estudiar, ocio)
@@ -217,3 +217,4 @@ tareas.forEach(tarea=>{
 
 
 
+// En la próxima entrega se completarán las demás opciones de la página, además de profundizar en el horario cuando tenga que poner en práctica eventos.
