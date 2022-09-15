@@ -11,6 +11,8 @@ let tiempoLibre = 0
 let tareas = []
 const selectTag = document.getElementById('listaDeTareas')
 const anadirTareaBotonJs = document.getElementById('anadirTareaBoton')
+const verTareasBotonJs = document.getElementById('verTareasBoton')
+const verTiemposBotonJs = document.getElementById('verTiemposBoton')
 
 class Tarea{
     constructor(nombre, descripcion, recordatorio, hora, duracion){
@@ -39,8 +41,18 @@ function calcularTiempoLibre(horasUsadas){
     return tiempoLibre
 }
 
+// Método para añdir tareas
+
 function agregarTareas(tarea){
     tareas.push(tarea)
+
+    tareas.forEach(tarea=>{
+        const option = document.createElement('option')
+        option.innerText = `${tarea.nombre}`
+        selectTag.append(option)
+    })
+
+
     return tareas;
 }
 
@@ -51,13 +63,7 @@ const estudiar = new Tarea("Estudiar", "Ponerse al día con las clases sin ver h
 const ocio = new Tarea("Ocio", "Tiempo de descanso  hasta la próxima tarea", "Ponerse al día con dailies en varios juegos.")
 let nuevaTarea = new Tarea()
 
-// Método para añdir tareas
 
-tareas.forEach(tarea=>{
-    const option = document.createElement('option')
-    option.innerText = `${tarea.nombre}`
-    selectTag.append(option)
-})
 
 
 // Método para agregar y revisar tareas
@@ -191,11 +197,31 @@ function gestionarTareas(){
 
 }
 
+// Método para mostrar tiempo usado y libre
+function mostrarTiempos(){
+    alert("Su cantidad de horas usadas es de: " + " " + horasUsadas)
+    alert("Tiene un %" + " " + calcularTiempoLibre(horasUsadas) + " " + "de tiempo libre en el día.")
+}
+
+// Método para mostrar tareas agregadas
+
+function mostrarTareas(){
+    if(tareas.length !== 0){
+        alert(JSON.stringify(tareasOrdenadas))
+    } else {
+        alert("No se ha añadido ninguna tarea")
+    }
+    // el alert no me está funcionando, sigue mostrando el array vacío
+}
+
+
 
 anadirTareaBotonJs.addEventListener('click', gestionarTareas)
+verTareasBotonJs.addEventListener('click', mostrarTareas)
+verTiemposBotonJs.addEventListener('click', mostrarTiempos)
 
-// alert("Su cantidad de horas usadas es de: " + " " + horasUsadas)
-// alert("Tiene un %" + " " + calcularTiempoLibre(horasUsadas) + " " + "de tiempo libre en el día.")
+
+
 
 
 
