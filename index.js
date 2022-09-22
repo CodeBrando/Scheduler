@@ -10,6 +10,7 @@ let porcentaje
 let tiempoLibre = 0
 let tareas = []
 const selectTag = document.getElementById('listaDeTareas')
+let horarioSelect = document.getElementsByClassName('tareasHorario')[0]
 const anadirTareaBotonJs = document.getElementById('anadirTareaBoton')
 const verTareasBotonJs = document.getElementById('verTareasBoton')
 const verTiemposBotonJs = document.getElementById('verTiemposBoton')
@@ -50,9 +51,22 @@ function agregarTareas(tarea){
         const option = document.createElement('option')
         option.innerText = `${tarea.nombre}`
         selectTag.append(option)
+
+        
     })
+    
 
+    return tareas;
+}
 
+function tareasParaHorario(tarea){
+        
+    tareas.forEach(tarea=>{
+        const optionHorario = document.createElement('option')
+        optionHorario.innerText = `${tarea.nombre}`
+        horarioSelect.append(optionHorario)
+        
+    })
     return tareas;
 }
 
@@ -93,6 +107,7 @@ function gestionarTareas(){
             }
             horasUsadas = horasUsadas += pasearAlPerro.duracion
             agregarTareas(pasearAlPerro);
+            tareasParaHorario(pasearAlPerro);
             
             
     
@@ -118,6 +133,7 @@ function gestionarTareas(){
             }
             horasUsadas = horasUsadas += estudiar.duracion
             agregarTareas(estudiar);
+            tareasParaHorario(estudiar);
     
         } else if (tarea === 3){
             horaDeTarea(ocio)
@@ -141,6 +157,7 @@ function gestionarTareas(){
             }
             horasUsadas = horasUsadas += ocio.duracion
             agregarTareas(ocio);
+            tareasParaHorario(ocio);
     
         } else if (tarea === 4){
             let nuevaTarea = new Tarea(prompt("Introduce el nombre de la tarea: "), prompt("Describe la tarea: "), prompt("Añade un recordatorio si fuese necesario: "))  
@@ -165,6 +182,7 @@ function gestionarTareas(){
             }
             horasUsadas = horasUsadas += nuevaTarea.duracion
             agregarTareas(nuevaTarea);
+            tareasParaHorario(nuevaTarea);
     
             
         } else {

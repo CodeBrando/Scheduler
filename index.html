@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Schetool</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     
@@ -39,7 +40,7 @@
                           <li><a class="dropdown-item" href="#">Another action</a></li>
                           <li><a class="dropdown-item" href="#">Something else here</a></li> Próximamente, con el horario armado, esos a llevarían a las horas en las que se cita la tarea seleccionada-->
                         <!-- </ul> -->
-                        <select name="" id="listaDeTareas" class="dropdown-menu listaDeTareas"></select>
+                        <select name="ListaDeTareas" id="listaDeTareas" class="dropdown-menu listaDeTareas"></select>
                       </li>
                     </ul>
                   </div>
@@ -49,9 +50,244 @@
 
 
         <h1>Welcome to ScheTool!</h1>
+        
+
+        <!-- <section class="schedule">
+          <table class="center">
+            <tr>
+              <th rowspan="2">DAY</th>
+              <th>1 <sup>st</sup> Hour</th>
+              <th>2 <sup>st</sup> Hour</th>
+              <th>3 <sup>st</sup> Hour</th>
+              <th rowspan="2">12:15pm-1:30pm</th>
+              <th>4 <sup>st</sup> Hour</th>
+              <th>5 <sup>st</sup> Hour</th>
+            </tr>
+
+            <tr>
+              <td>9:30am-10:25am</td>
+              <td>10:25am-11:20am</td>
+              <td>11:20am-12:15am</td>
+              <td>1:30pm-2:25pm</td>
+              <td>2:25pm-3:20pm</td>
+            </tr>
+
+            <tr>
+              <td>MON</td>
+              <td>SS</td>
+              <td>SADP</td>
+              <td>MC</td>
+              <th rowspan="6">L <br> U <br> N <br> C <br> H <br><br> B <br> R <br> E <br>A <br>K <br></th>
+            </tr>
+
+            <tr>
+              <td>TUE</td>
+              <td>CNS</td>
+              <td>APT</td>
+              <td>MC</td>
+              <td>MEFA</td>
+              <td>SADP</td>
+            </tr>
+
+            <tr>
+              <td>WED</td>
+              <td>SPM</td>
+              <td>SADP</td>
+              <td>SS</td>
+              <td>MEFA</td>
+              <td>WT</td>
+            </tr>
+
+            <tr>
+              <td>THU</td>
+              <td>APT</td>
+              <td>CNS</td>
+              <td>SS</td>
+              <td>SPM</td>
+              <td>MC</td>
+            </tr>
+
+            <tr>
+              <td>FRI</td>
+              <td>MC</td>
+              <td>MEFA</td>
+              <td>SADP</td>
+              <td>APT</td>
+              <td>WT</td>
+            </tr>
+
+            <tr>
+              <td>SAT</td>
+              <td>SS</td>
+              <td>APT</td>
+              <td>SPM</td>
+              <td>CNS</td>
+              <td>WT</td>
+            </tr>
+
+            <tr>
+              <td>TUE</td>
+              <td>CNS</td>
+              <td>APT</td>
+              <td>MC</td>
+              <td>MEFA</td>
+              <td>SADP</td>
+            </tr>
+
+          </table>
+
+        </section> -->
+
+        <section class="schedule">
+          <table class="center">
+            <tr>
+              <th rowspan="2">DAY</th>
+              <th>1 <sup>st</sup> Hour</th>
+              <th>2 <sup>nd</sup> Hour</th>
+              <th>3 <sup>rd</sup> Hour</th>
+              <th>4 <sup>th</sup> Hour</th>
+              <th>5 <sup>th</sup> Hour</th>
+              <th>6 <sup>th</sup> Hour</th>
+              <th>7 <sup>st</sup> Hour</th>
+              <th>8 <sup>nd</sup> Hour</th>
+              <th>9 <sup>rd</sup> Hour</th>
+              <th>10 <sup>th</sup> Hour</th>
+              <th>11<sup>th</sup> Hour</th>
+              <th>12<sup>th</sup> Hour</th>
+            </tr>
+
+            <tr>
+              <td>9:30am-10:25am</td>
+              <td>10:25am-11:20am</td>
+              <td>11:20am-12:15am</td>
+              <td>1:30pm-2:25pm</td>
+              <td>2:25pm-3:20pm</td>
+              <td>3:20pm-4:15pm</td>
+              <td>4:15pm-5:10pm</td>
+              <td>5:10pm-6:05pm</td>
+              <td>6:05pm-7:00pm</td>
+              <td>7:00pm-8:55pm</td>
+              <td>8:55pm-9:50pm</td>
+              <td>9:50pm-10:45pm</td>
+            </tr>
+
+            <tr>
+              <td>MON</td>
+              <td><select name="ListaDeTareas" class="dropdown-menu tareasHorario"></select></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td>TUE</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td>WED</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td>THU</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td>FRI</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td>SAT</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td>SUN</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+
+        </section>
 
 
-
+        
 
 
 
