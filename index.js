@@ -9,11 +9,40 @@ let horasLibres = 0
 let porcentaje
 let tiempoLibre = 0
 let tareas = []
+let celdas = Array.from(document.getElementsByClassName('celda'))
 const selectTag = document.getElementById('listaDeTareas')
+
+// const selectR1C1 = document.getElementById('row1col1')
+// const selectR1C2 = document.getElementById('row1col2')
+// const selectR1C3 = document.getElementById('row1col3')
+// const selectR1C4 = document.getElementById('row1col4')
+// const selectR1C5 = document.getElementById('row1col5')
+// const selectR1C6 = document.getElementById('row1col6')
+// const selectR1C7 = document.getElementById('row1col7')
+// const selectR1C8 = document.getElementById('row1col8')
+// const selectR1C9 = document.getElementById('row1col9')
+// const selectR1C10 = document.getElementById('row1col10')
+// const selectR1C11 = document.getElementById('row1col11')
+// const selectR1C12 = document.getElementById('row1col12')
+
+// const selectR2C1 = document.getElementById('row2col1')
+// const selectR2C2 = document.getElementById('row2col2')
+// const selectR2C3 = document.getElementById('row2col3')
+// const selectR2C4 = document.getElementById('row2col4')
+// const selectR2C5 = document.getElementById('row2col5')
+// const selectR2C6 = document.getElementById('row2col6')
+// const selectR2C7 = document.getElementById('row2col7')
+// const selectR2C8 = document.getElementById('row2col8')
+// const selectR2C9 = document.getElementById('row2col9')
+// const selectR2C10 = document.getElementById('row2col10')
+// const selectR2C11 = document.getElementById('row2col11')
+// const selectR2C12 = document.getElementById('row2col12')
+
 let horarioSelect = document.getElementsByClassName('tareasHorario')[0]
 const anadirTareaBotonJs = document.getElementById('anadirTareaBoton')
 const verTareasBotonJs = document.getElementById('verTareasBoton')
 const verTiemposBotonJs = document.getElementById('verTiemposBoton')
+// let selects = [selectTag, selectR1C1, selectR1C2, selectR1C3, selectR1C4, selectR1C5, selectR1C6, selectR1C7, selectR1C8, selectR1C9, selectR1C10, selectR1C11, selectR1C12, selectR2C1, selectR2C2, selectR2C3, selectR2C4, selectR2C5, selectR2C6, selectR2C7, selectR2C8, selectR2C9, selectR2C10, selectR2C11, selectR2C12]
 
 class Tarea{
     constructor(nombre, descripcion, recordatorio, hora, duracion){
@@ -51,24 +80,20 @@ function agregarTareas(tarea){
         const option = document.createElement('option')
         option.innerText = `${tarea.nombre}`
         selectTag.append(option)
-
+        celdas.forEach(celda => {
+            const option = document.createElement('option')
+            option.innerText = `${tarea.nombre}`
+            const optionTable = document.createElement('option')
+            option.innerText = "Vacío"
+            celda.append(optionTable)
+            celda.append(option)
+        })
         
-    })
-    
-
+        }
+    )
     return tareas;
 }
 
-function tareasParaHorario(tarea){
-        
-    tareas.forEach(tarea=>{
-        const optionHorario = document.createElement('option')
-        optionHorario.innerText = `${tarea.nombre}`
-        horarioSelect.append(optionHorario)
-        
-    })
-    return tareas;
-}
 
 let tareasOrdenadas = tareas.sort((obj1, obj2)=>obj1.hora - obj2.hora) 
 
@@ -106,8 +131,9 @@ function gestionarTareas(){
                     continue
             }
             horasUsadas = horasUsadas += pasearAlPerro.duracion
-            agregarTareas(pasearAlPerro);
-            tareasParaHorario(pasearAlPerro);
+            agregarTareas(pasearAlPerro)
+            // agregarTareas(pasearAlPerro, selectR1C1)
+            
             
             
     
@@ -133,7 +159,7 @@ function gestionarTareas(){
             }
             horasUsadas = horasUsadas += estudiar.duracion
             agregarTareas(estudiar);
-            tareasParaHorario(estudiar);
+            
     
         } else if (tarea === 3){
             horaDeTarea(ocio)
@@ -157,7 +183,7 @@ function gestionarTareas(){
             }
             horasUsadas = horasUsadas += ocio.duracion
             agregarTareas(ocio);
-            tareasParaHorario(ocio);
+            
     
         } else if (tarea === 4){
             let nuevaTarea = new Tarea(prompt("Introduce el nombre de la tarea: "), prompt("Describe la tarea: "), prompt("Añade un recordatorio si fuese necesario: "))  
@@ -182,7 +208,7 @@ function gestionarTareas(){
             }
             horasUsadas = horasUsadas += nuevaTarea.duracion
             agregarTareas(nuevaTarea);
-            tareasParaHorario(nuevaTarea);
+            
     
             
         } else {
@@ -214,6 +240,7 @@ function gestionarTareas(){
     }
 
 }
+run = true
 
 // Método para mostrar tiempo usado y libre
 function mostrarTiempos(){
@@ -229,7 +256,7 @@ function mostrarTareas(){
     } else {
         alert("No se ha añadido ninguna tarea")
     }
-    // el alert no me está funcionando, sigue mostrando el array vacío
+    
 }
 
 
