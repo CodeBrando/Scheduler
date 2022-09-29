@@ -11,38 +11,15 @@ let tiempoLibre = 0
 let tareas = []
 let celdas = Array.from(document.getElementsByClassName('celda'))
 const selectTag = document.getElementById('listaDeTareas')
-
-// const selectR1C1 = document.getElementById('row1col1')
-// const selectR1C2 = document.getElementById('row1col2')
-// const selectR1C3 = document.getElementById('row1col3')
-// const selectR1C4 = document.getElementById('row1col4')
-// const selectR1C5 = document.getElementById('row1col5')
-// const selectR1C6 = document.getElementById('row1col6')
-// const selectR1C7 = document.getElementById('row1col7')
-// const selectR1C8 = document.getElementById('row1col8')
-// const selectR1C9 = document.getElementById('row1col9')
-// const selectR1C10 = document.getElementById('row1col10')
-// const selectR1C11 = document.getElementById('row1col11')
-// const selectR1C12 = document.getElementById('row1col12')
-
-// const selectR2C1 = document.getElementById('row2col1')
-// const selectR2C2 = document.getElementById('row2col2')
-// const selectR2C3 = document.getElementById('row2col3')
-// const selectR2C4 = document.getElementById('row2col4')
-// const selectR2C5 = document.getElementById('row2col5')
-// const selectR2C6 = document.getElementById('row2col6')
-// const selectR2C7 = document.getElementById('row2col7')
-// const selectR2C8 = document.getElementById('row2col8')
-// const selectR2C9 = document.getElementById('row2col9')
-// const selectR2C10 = document.getElementById('row2col10')
-// const selectR2C11 = document.getElementById('row2col11')
-// const selectR2C12 = document.getElementById('row2col12')
-
 let horarioSelect = document.getElementsByClassName('tareasHorario')[0]
 const anadirTareaBotonJs = document.getElementById('anadirTareaBoton')
 const verTareasBotonJs = document.getElementById('verTareasBoton')
 const verTiemposBotonJs = document.getElementById('verTiemposBoton')
-// let selects = [selectTag, selectR1C1, selectR1C2, selectR1C3, selectR1C4, selectR1C5, selectR1C6, selectR1C7, selectR1C8, selectR1C9, selectR1C10, selectR1C11, selectR1C12, selectR2C1, selectR2C2, selectR2C3, selectR2C4, selectR2C5, selectR2C6, selectR2C7, selectR2C8, selectR2C9, selectR2C10, selectR2C11, selectR2C12]
+anadirTareaBotonJs.addEventListener('click', gestionarTareas)
+verTareasBotonJs.addEventListener('click', mostrarTareas)
+verTiemposBotonJs.addEventListener('click', mostrarTiempos)
+var nuevasTareas = []
+var contadorNuevasTareas = 0
 
 class Tarea{
     constructor(nombre, descripcion, recordatorio, hora, duracion){
@@ -73,8 +50,25 @@ function calcularTiempoLibre(horasUsadas){
 
 // Método para añdir tareas
 
+celdas.forEach(celda => {
+    
+    const optionTable = document.createElement('option')
+    optionTable.innerText = "Vacío"
+    celda.append(optionTable)
+})
+
+// Método para añadir nuevas tareas
+
+function agregarNuevaTarea(tareaAAgregar){
+    nuevasTareas[contadorNuevasTareas] = tareaAAgregar
+    contadorNuevasTareas += 1
+    return nuevasTareas
+}
+    
+
 function agregarTareas(tarea){
     tareas.push(tarea)
+    
 
     tareas.forEach(tarea=>{
         const option = document.createElement('option')
@@ -83,10 +77,8 @@ function agregarTareas(tarea){
         celdas.forEach(celda => {
             const option = document.createElement('option')
             option.innerText = `${tarea.nombre}`
-            const optionTable = document.createElement('option')
-            option.innerText = "Vacío"
-            celda.append(optionTable)
             celda.append(option)
+            
         })
         
         }
@@ -132,7 +124,18 @@ function gestionarTareas(){
             }
             horasUsadas = horasUsadas += pasearAlPerro.duracion
             agregarTareas(pasearAlPerro)
-            // agregarTareas(pasearAlPerro, selectR1C1)
+            Swal.fire({
+                text: 'Tarea agregada con éxito',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+              })
+            Toastify({
+                text: "Se ha añadido una nueva tarea",
+                duration: 3000,
+                style: {
+                    background: "linear-gradient(to right, #151314, #FFFF33)",
+                  },
+            }).showToast()
             
             
             
@@ -158,7 +161,19 @@ function gestionarTareas(){
                 continue
             }
             horasUsadas = horasUsadas += estudiar.duracion
-            agregarTareas(estudiar);
+            agregarTareas(estudiar)
+            Swal.fire({
+                text: 'Tarea agregada con éxito',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+              })
+            Toastify({
+                text: "Se ha añadido una nueva tarea",
+                duration: 3000,
+                style: {
+                    background: "linear-gradient(to right, #151314, #FFFF33)",
+                  },
+            }).showToast()
             
     
         } else if (tarea === 3){
@@ -182,7 +197,19 @@ function gestionarTareas(){
                     continue
             }
             horasUsadas = horasUsadas += ocio.duracion
-            agregarTareas(ocio);
+            agregarTareas(ocio)
+            Swal.fire({
+                text: 'Tarea agregada con éxito',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+              })
+            Toastify({
+                text: "Se ha añadido una nueva tarea",
+                duration: 3000,
+                style: {
+                    background: "linear-gradient(to right, #151314, #FFFF33)",
+                  },
+            }).showToast()
             
     
         } else if (tarea === 4){
@@ -207,7 +234,21 @@ function gestionarTareas(){
                     continue
             }
             horasUsadas = horasUsadas += nuevaTarea.duracion
-            agregarTareas(nuevaTarea);
+            agregarTareas(nuevaTarea)
+            Swal.fire({
+                text: 'Tarea agregada con éxito',
+                icon: 'success',
+                confirmButtonText: 'Ok'
+              })
+            Toastify({
+                text: "Se ha añadido una nueva tarea",
+                duration: 3000,
+                style: {
+                    background: "linear-gradient(to right, #151314, #FFFF33)",
+                  },
+            }).showToast()
+            agregarNuevaTarea(nuevaTarea)
+            
             
     
             
@@ -261,9 +302,7 @@ function mostrarTareas(){
 
 
 
-anadirTareaBotonJs.addEventListener('click', gestionarTareas)
-verTareasBotonJs.addEventListener('click', mostrarTareas)
-verTiemposBotonJs.addEventListener('click', mostrarTiempos)
+
 
 
 

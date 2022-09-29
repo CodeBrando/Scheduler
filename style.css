@@ -6,7 +6,27 @@
     font-family:'Ubuntu', sans-serif;
 }
 
+body{
+    background-color: #151314;
+}
 
+.collapse{
+    display: flex;
+    justify-content: space-around !important;
+}
+
+
+.navbar-brand{
+    color: #FFFF33;
+}
+
+.bannerTitle{
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    display: flex;
+    justify-content: center;
+    color: #FFFF33;
+}
 
 table{
     border: 1px;
@@ -15,6 +35,8 @@ table{
     background: linear-gradient(145deg, #2e2e2e, #373737);
     box-shadow: 9px 9px 18px #1f1f1f,
                 -9px -9px -18px #474747;
+    width: 80vw;
+    height: 70vh;
 }
 
 th{
@@ -41,11 +63,12 @@ td:hover{
                 -9px -9px -18px #474747;
 }
 
-/* table.center{
-    margin-left: auto;
+table.center{
+    margin-left: auto ;
     margin-right: auto;
-} */
+}
 
 select{
-    color: #151314;;
+    color: #FFFF33;
+    background-color: #151314;
 }

@@ -5,51 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Schetool</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
     
     
 
-        <head>
-            <nav class="navbar navbar-expand-lg bg-light">
-                <div class="container-fluid">
+        <header>
+            <nav class="navbar navbar-expand-lg bg-dark" style="height: 10vh;">
+                <div class="container-fluid ">
                   <a class="navbar-brand" href="#">ScheTool</a>
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
-                  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                  <div class="collapse navbar-collapse " id="navbarNavDropdown">
                     <ul class="navbar-nav">
                       <li class="nav-item">
-                        <button type="button" class="btn btn-outline-secondary " id="anadirTareaBoton">Añadir Tareas</button>
+                        <button type="button" class="btn btn-outline-secondary " style="color: whitesmoke;" id="anadirTareaBoton">Añadir Tareas</button>
                       </li>
                       <li class="nav-item">
-                        <button type="button" class="btn btn-outline-secondary" id="verTareasBoton">Ver Tareas</button>
+                        <button type="button" class="btn btn-outline-secondary" style="color: whitesmoke;" id="verTareasBoton">Ver Tareas</button>
                       </li>
                       <li class="nav-item">
-                        <button type="button" class="btn btn-outline-secondary" id="verTiemposBoton">Ver Tiempos</button>
+                        <button type="button" class="btn btn-outline-secondary" style="color: whitesmoke;" id="verTiemposBoton">Ver Tiempos</button>
                       </li>
                       <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #ff0157;">
                           Tareas
                         </a>
-                        <!-- <ul class="dropdown-menu"> -->
-                          <!-- <li><a class="dropdown-item" href="#">Tareas</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li> Próximamente, con el horario armado, esos a llevarían a las horas en las que se cita la tarea seleccionada-->
-                        <!-- </ul> -->
                         <select name="ListaDeTareas" id="listaDeTareas" class="dropdown-menu listaDeTareas"></select>
                       </li>
                     </ul>
                   </div>
                 </div>
               </nav>
-        </head>
+        </header>
 
 
-        <h1>Welcome to ScheTool!</h1>
+        <h1 class="bannerTitle">Welcome to ScheTool!</h1>
 
         <section class="schedule">
           <table class="center">
@@ -200,19 +194,11 @@
         </section>
 
 
-        
-
-
-
-
-
-
-
-
-
-
-
     <script src="index.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.0.4/build/global/luxon.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" 
+    crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   </body>
 </html>
