@@ -20,6 +20,8 @@ verTareasBotonJs.addEventListener('click', mostrarTareas)
 verTiemposBotonJs.addEventListener('click', mostrarTiempos)
 var nuevasTareas = []
 var contadorNuevasTareas = 0
+let botonDigimon = document.getElementById('unrelatedButton')
+let listaDigimon = document.getElementById('listaMegas')
 
 class Tarea{
     constructor(nombre, descripcion, recordatorio, hora, duracion){
@@ -47,6 +49,25 @@ function calcularTiempoLibre(horasUsadas){
     tiempoLibre = (horasUsadas*100)/24
     return tiempoLibre
 }
+
+
+botonDigimon.onclick = () =>{
+fetch('https://digimon-api.vercel.app/api/digimon/level/mega')
+.then(response=>response.json())
+.then(info=>{
+    const digimons = info
+    console.log(digimons)
+    digimons.forEach(digimon =>{
+        const data = document.createElement('li')
+        data.innerHTML = `<h2 class="textoDigi">${digimon.name}</h2>
+                         <img src=${digimon.img}>
+                         <p class="textoDigi2">${digimon.level}</p>`
+        listaDigimon.append(data)
+    });
+
+})
+}
+
 
 // Método para añdir tareas
 
@@ -299,6 +320,7 @@ function mostrarTareas(){
     }
     
 }
+
 
 
 
