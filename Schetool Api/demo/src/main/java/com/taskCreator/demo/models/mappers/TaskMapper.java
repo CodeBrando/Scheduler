@@ -57,7 +57,7 @@ public class TaskMapper {
 
     public static List<TaskBO> convertTOListToBOList(List<TaskTO> tasksTO){
         List<TaskBO> taskBOList = new ArrayList<>();
-        tasksTO.forEach(taskTO -> taskBOList.add(TaskMapper.convertTOToBO(tasksTO)));
+        tasksTO.forEach(taskTO -> taskBOList.add(TaskMapper.convertTOToBO(taskTO)));
         return taskBOList;
     }
 
