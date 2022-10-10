@@ -14,7 +14,7 @@ public class TaskMapper {
                 .id(Objects.isNull(taskBO.getId()) ? null : taskBO.getId())
                 .name(taskBO.getName())
                 .description(taskBO.getDescription())
-                .time(taskBO.getTime())
+                .start(taskBO.getStart())
                 .duration(taskBO.getDuration())
                 .build();
     }
@@ -24,7 +24,7 @@ public class TaskMapper {
                 .id(Objects.isNull(taskDE.getId()) ? null : taskDE.getId())
                 .name(taskDE.getName())
                 .description(taskDE.getDescription())
-                .time(taskDE.getTime())
+                .start(taskDE.getStart())
                 .duration(taskDE.getDuration())
                 .build();
     }
@@ -34,36 +34,32 @@ public class TaskMapper {
                 .id(Objects.isNull(taskTO.getId()) ? null : taskTO.getId())
                 .name(taskTO.getName())
                 .description(taskTO.getDescription())
-                .time(taskTO.getTime())
+                .start(taskTO.getStart())
                 .duration(taskTO.getDuration())
                 .build();
+
 
     }
 
     public static TaskTO convertBOToTO(TaskBO taskBO){
         return TaskTO.builder()
+                .id(Objects.isNull(taskBO.getId()) ? null : taskBO.getId())
                 .name(taskBO.getName())
                 .description((taskBO.getDescription()))
-                .time(taskBO.getTime())
+                .start(taskBO.getStart())
                 .duration(taskBO.getDuration())
                 .build();
     }
 
     public static List<TaskBO> convertDEListToBOList(List<TaskDE> taskDEList){
         List<TaskBO> taskBOList = new ArrayList<>();
-        taskDEList.forEach(taskDE -> taskBOList.add(TaskMapper.convertDEToBO(taskDE)));
-        return taskBOList;
-    }
-
-    public static List<TaskBO> convertTOListToBOList(List<TaskTO> tasksTO){
-        List<TaskBO> taskBOList = new ArrayList<>();
-        tasksTO.forEach(taskTO -> taskBOList.add(TaskMapper.convertTOToBO(taskTO)));
+        taskDEList.forEach(taskDE -> taskBOList.add(convertDEToBO(taskDE)));
         return taskBOList;
     }
 
     public static List<TaskTO> convertBOListToTOList(List<TaskBO> tasksBO){
         List<TaskTO> taskTOList = new ArrayList<>();
-        tasksBO.forEach(taskBO -> taskTOList.add(TaskMapper.convertBOToTO(taskBO)));
+        tasksBO.forEach(taskBO -> taskTOList.add(convertBOToTO(taskBO)));
         return taskTOList;
     }
 }

@@ -3,13 +3,10 @@ package com.taskCreator.demo.controllers.to;
 
 import lombok.Builder;
 import lombok.Data;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Data
-@NotNull
-@Size
 @Builder
 public class TaskTO {
 
@@ -23,8 +20,8 @@ public class TaskTO {
     private String description;
 
     @Size(min = 1, max = 12)
-    private Float time;
+    private double start;
 
     @Size(min = 1, max = 12)
-    private Float duration;
+    private double duration;
 }

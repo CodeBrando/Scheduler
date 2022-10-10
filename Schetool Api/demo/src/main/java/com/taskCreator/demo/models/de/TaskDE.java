@@ -27,11 +27,11 @@ public class TaskDE {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @Column(name = "TIME")
-    private Float time;
+    @Column(name = "START")
+    private Double start;
 
     @Column(name = "DURATION")
-    private Float duration;
+    private Double duration;
 
 
 }
