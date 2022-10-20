@@ -1,359 +1,127 @@
 
-let tarea
-let run = true
-let opcion
-let opcion2
-let opcion3 = 1
-let horasUsadas = 0
-let horasLibres = 0
-let porcentaje
-let tiempoLibre = 0
 let tareas = []
 let celdas = Array.from(document.getElementsByClassName('celda'))
-const selectTag = document.getElementById('listaDeTareas')
-let horarioSelect = document.getElementsByClassName('tareasHorario')[0]
 const anadirTareaBotonJs = document.getElementById('anadirTareaBoton')
 const verTareasBotonJs = document.getElementById('verTareasBoton')
 const verTiemposBotonJs = document.getElementById('verTiemposBoton')
-anadirTareaBotonJs.addEventListener('click', gestionarTareas)
+const borrarBoton = document.getElementById('deleteButton')
 verTareasBotonJs.addEventListener('click', mostrarTareas)
 verTiemposBotonJs.addEventListener('click', mostrarTiempos)
-var nuevasTareas = []
-var contadorNuevasTareas = 0
-// let botonDigimon = document.getElementById('unrelatedButton')
-// let listaDigimon = document.getElementById('listaMegas')
-let apiTest = document.getElementById('apiTestButton')
+borrarBoton.addEventListener('click', borrarTarea)
+const jsonUrl = 'https://jsonplaceholder.typicode.com/posts'
 
 
-class Tarea{
-    constructor(nombre, descripcion, recordatorio, hora, duracion){
-        this.nombre = nombre
-        this.descripcion = descripcion
-        this.recordatorio = recordatorio
-        this.hora = hora
-        this.duracion = duracion
 
-    }   
+celdas.forEach(celda => {
+    const optionTable = document.createElement('option')
+    optionTable.innerText = "Empty"
+    celda.append(optionTable)
+})
+
+
+let form = document.getElementById('form')
+form.addEventListener('submit', function(e){
+    e.preventDefault()
+    var name = document.getElementById('name').value
+    fetch(jsonUrl, {
+        method:'POST',
+        body:JSON.stringify({
+            name:name
+        }),
+        headers:{
+            "Content-Type":"application/json; charset=UTF-8"
+        } 
+    })
+    .then(function(response){
+        return response.json()
+    })
+    .then(info=>{
+        console.log(info)
+        tareas.push(name)
+        localStorage.setItem("tasks", JSON.stringify(tareas))
+            celdas.forEach(celda => {
+                const option = document.createElement('option') 
+                option.innerText = `${name}`
+                celda.append(option)  
+            })
+            }
+        )
+        Swal.fire({
+            text: 'Tarea agregada con éxito',
+            icon: 'success',
+            confirmButtonText: 'Ok'
+          })
+        Toastify({
+            text: "Se ha añadido una nueva tarea",
+            duration: 3000,
+            style: {
+                background: "linear-gradient(to right, #151314, #FFFF33)",
+              },
+        }).showToast()
+    })
+    
+
+
+
+
+    
+// Método para mostrar tiempo usado y libre
+function mostrarTiempos(){
+    alert("Su cantidad de horas usadas es de: " + " " + horasUsadas)
+    alert("Tiene un %" + " " + calcularTiempoLibre(horasUsadas) + " " + "de tiempo libre en el día.")
 }
-
-function horaDeTarea(tarea){
-    tarea.hora = parseFloat(prompt("Ingrese la hora de la tarea (0.00 - 23.59): "))
-    return tarea.hora;
-}
-
-function duracionDeTarea(tarea){
-    tarea.duracion = parseFloat(prompt("Ingrese la duración de la tarea (0.00 - 23.59): "))
-    return tarea.duracion;
-}
-
 function calcularTiempoLibre(horasUsadas){
     horasLibres = 24 - horasUsadas
     tiempoLibre = (horasUsadas*100)/24
     return tiempoLibre
 }
 
-
-
-
-// botonDigimon.onclick = () =>{
-// fetch('https://digimon-api.vercel.app/api/digimon/level/mega')
-// .then(response=>response.json())
-// .then(info=>{
-//     const digimons = info
-//     console.log(digimons)
-//     digimons.forEach(digimon =>{
-//         const data = document.createElement('li')
-//         data.innerHTML = `<h2 class="textoDigi">${digimon.name}</h2>
-//                          <img src=${digimon.img}>
-//                          <p class="textoDigi2">${digimon.level}</p>`
-//         listaDigimon.append(data)
-//     });
-
-// })
-// }
-
-apiTest.onclick = () =>{
-    let apiPost = { 
-        name: 'nombre',
-        description: 'descripcion',
-        time: 0,
-        duration: 0
-    
-    }
-    function createApiPost(){
-        apiPost.name(prompt("Introduce el nombre de la tarea: ")),
-        apiPost.description(prompt("Introduce la descripcion de la tarea: "))
-        apiPost.time(prompt("Introduce la hora de la tarea(separar horas de minutos con '.'): "))
-        apiPost.duration(prompt("Introduce la duración de la tarea(separar horas de minutos con '.'): "))
-    }
-    createApiPost;
-    
-    const options = {
-        method: "POST",
-        headers: {
-            'Content-Type' : 'application/json'
-        },
-        body: JSON.stringify(apiPost)
-    };
-
-    fetch('https://schetool-api.herokuapp.com/api/v1/tasks/create', options)
-    
-}
-
-// Método para añdir tareas
-
-celdas.forEach(celda => {
-    
-    const optionTable = document.createElement('option')
-    optionTable.innerText = "Vacío"
-    celda.append(optionTable)
-})
-
-// Método para añadir nuevas tareas
-
-function agregarNuevaTarea(tareaAAgregar){
-    nuevasTareas[contadorNuevasTareas] = tareaAAgregar
-    contadorNuevasTareas += 1
-    return nuevasTareas
-}
-    
-
-function agregarTareas(tarea){
-    tareas.push(tarea)
-    
-
-    tareas.forEach(tarea=>{
-        const option = document.createElement('option')
-        option.innerText = `${tarea.nombre}`
-        selectTag.append(option)
-        celdas.forEach(celda => {
-            const option = document.createElement('option')
-            option.innerText = `${tarea.nombre}`
-            celda.append(option)
-            
-        })
-        
-        }
-    )
-    return tareas;
-}
-
-
-let tareasOrdenadas = tareas.sort((obj1, obj2)=>obj1.hora - obj2.hora) 
-
-const pasearAlPerro = new Tarea("Pasear al perro", "Pasear al perro por el barrio durante aproximadamente media hora.", "Llevar bolsas de nylon.")
-const estudiar = new Tarea("Estudiar", "Ponerse al día con las clases sin ver hasta el momento; practicar al menos una vez lo ya visto.", "Chequear qur no haya desafíos por entregar.")
-const ocio = new Tarea("Ocio", "Tiempo de descanso  hasta la próxima tarea", "Ponerse al día con dailies en varios juegos.")
-let nuevaTarea = new Tarea()
-
-
-
-
-// Método para agregar y revisar tareas
-
-function gestionarTareas(){
-    while(run === true){
-        tarea = parseInt(prompt("Ingrese la tarea que desea añadir: 1- Pasear al perro, 2- Estudiar, 3- Tiempo libre, 4- Crear una nueva tarea."))
-        if (tarea === 1){
-            horaDeTarea(pasearAlPerro)
-            if(pasearAlPerro.hora > 23.59){
-                do{
-                    alert("La hora no puede superar las 23.59 hs")
-                    horaDeTarea(pasearAlPerro)
-                    }
-                    while(pasearAlPerro.hora > 23.59)
-                    continue
-    
-            }
-            duracionDeTarea(pasearAlPerro)
-            if(pasearAlPerro.duracion > 23.59){
-                do{
-                    alert("La duración no puede superar las 23.59 hs")
-                    duracionDeTarea(pasearAlPerro)
-                    }
-                    while(pasearAlPerro.duracion > 23.59)
-                    continue
-            }
-            horasUsadas = horasUsadas += pasearAlPerro.duracion
-            agregarTareas(pasearAlPerro)
-            Swal.fire({
-                text: 'Tarea agregada con éxito',
-                icon: 'success',
-                confirmButtonText: 'Ok'
-              })
-            Toastify({
-                text: "Se ha añadido una nueva tarea",
-                duration: 3000,
-                style: {
-                    background: "linear-gradient(to right, #151314, #FFFF33)",
-                  },
-            }).showToast()
-            
-            
-            
-    
-        } else if (tarea === 2){
-            horaDeTarea(estudiar)
-            if(estudiar.hora > 23.59){
-                do{
-                    alert("La hora no puede superar las 23.59 hs")
-                    horaDeTarea(estudiar)
-                    }
-                    while(estudiar.hora > 23.59)
-                    continue
-    
-            }
-            duracionDeTarea(estudiar)
-            if(estudiar.duracion > 23.59){
-                do{
-                alert("La duración no puede superar las 23.59 hs")
-                duracionDeTarea(estudiar)
-                }
-                while(estudiar.duracion > 23.59)
-                continue
-            }
-            horasUsadas = horasUsadas += estudiar.duracion
-            agregarTareas(estudiar)
-            Swal.fire({
-                text: 'Tarea agregada con éxito',
-                icon: 'success',
-                confirmButtonText: 'Ok'
-              })
-            Toastify({
-                text: "Se ha añadido una nueva tarea",
-                duration: 3000,
-                style: {
-                    background: "linear-gradient(to right, #151314, #FFFF33)",
-                  },
-            }).showToast()
-            
-    
-        } else if (tarea === 3){
-            horaDeTarea(ocio)
-            if(ocio.hora > 23.59){
-                do{
-                    alert("La hora no puede superar las 23.59 hs")
-                    horaDeTarea(ocio)
-                    }
-                    while(ocio.hora > 23.59)
-                    continue
-    
-            }
-            duracionDeTarea(ocio)
-            if(ocio.duracion > 23.59){
-                do{
-                    alert("La duración no puede superar las 23.59 hs")
-                    duracionDeTarea(ocio)
-                    }
-                    while(ocio.duracion > 23.59)
-                    continue
-            }
-            horasUsadas = horasUsadas += ocio.duracion
-            agregarTareas(ocio)
-            Swal.fire({
-                text: 'Tarea agregada con éxito',
-                icon: 'success',
-                confirmButtonText: 'Ok'
-              })
-            Toastify({
-                text: "Se ha añadido una nueva tarea",
-                duration: 3000,
-                style: {
-                    background: "linear-gradient(to right, #151314, #FFFF33)",
-                  },
-            }).showToast()
-            
-    
-        } else if (tarea === 4){
-            let nuevaTarea = new Tarea(prompt("Introduce el nombre de la tarea: "), prompt("Describe la tarea: "), prompt("Añade un recordatorio si fuese necesario: "))  
-            horaDeTarea(nuevaTarea)
-            if(nuevaTarea.hora > 23.59){
-                do{
-                    alert("La hora no puede superar las 23.59 hs")
-                    horaDeTarea(nuevaTarea)
-                    }
-                    while(nuevaTarea.hora > 23.59)
-                    continue
-    
-            }
-            duracionDeTarea(nuevaTarea)
-            if(nuevaTarea.duracion > 23.59){
-                do{
-                    alert("La duración no puede superar las 23.59 hs")
-                    duracionDeTarea(nuevaTarea)
-                    }
-                    while(nuevaTarea.duracion > 23.59)
-                    continue
-            }
-            horasUsadas = horasUsadas += nuevaTarea.duracion
-            agregarTareas(nuevaTarea)
-            Swal.fire({
-                text: 'Tarea agregada con éxito',
-                icon: 'success',
-                confirmButtonText: 'Ok'
-              })
-            Toastify({
-                text: "Se ha añadido una nueva tarea",
-                duration: 3000,
-                style: {
-                    background: "linear-gradient(to right, #151314, #FFFF33)",
-                  },
-            }).showToast()
-            agregarNuevaTarea(nuevaTarea)
-            
-            
-    
-            
-        } else {
-            tarea = parseInt(prompt("Ingrese la tarea que desea añadir: 1- Pasear al perro, 2- Estudiar, 3- Tiempo libre, 4- Crear una nueva tarea."))
-            continue
-        }
-    
-        opcion = parseInt(prompt("Desea ver sus tareas? 1- Si, 2- No"))
-        if(opcion === 1){
-            alert(JSON.stringify(tareasOrdenadas))
-        } 
-    
-    
-        
-    
-        opcion2 = parseInt(prompt("Desea seguir añadiendo tareas? 1- Si, 2- No"))
-        if (opcion2 === 2){
-            run = false
-        }
-    
-        // if (horasUsadas > 23.59){
-        //     alert("Las horas usadas no pueden superar las 23.59")
-           
-    
-        // }
-    
-        // Me gustaría poder limitar las horas del día, pero no sabría cómo hacer para que el usuario decida qué tarea eliminar cuando se pasa de horas
-        
-    }
-
-}
-run = true
-
-// Método para mostrar tiempo usado y libre
-function mostrarTiempos(){
-    alert("Su cantidad de horas usadas es de: " + " " + horasUsadas)
-    alert("Tiene un %" + " " + calcularTiempoLibre(horasUsadas) + " " + "de tiempo libre en el día.")
-}
-
 // Método para mostrar tareas agregadas
 
 function mostrarTareas(){
     if(tareas.length !== 0){
-        alert(JSON.stringify(tareasOrdenadas))
+        Swal.fire({
+            title: 'Tasks: ',
+            text: `${tareas.join(', ')}`,
+            icon: 'success',
+            confirmButtonText: 'Ok'
+          })
     } else {
-        alert("No se ha añadido ninguna tarea")
+        Swal.fire({
+            text: 'No tasks have been added yet.',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          })
     }
     
 }
 
+function borrarTarea(){
+    if(tareas.length > 1){
+        tareas.pop()
+        Swal.fire({
+            title: 'Task eliminated succesfully, remaining tasks are: ',
+            text: `${tareas.join(', ')}`,
+            icon: 'success',
+            confirmButtonText: 'Ok'
+          })
 
-
+    } else if(tareas.length === 1){
+        tareas.pop()
+        Swal.fire({
+            text: 'No more tasks remaining.',
+            icon: 'success',
+            confirmButtonText: 'Ok'
+          })
+    }
+     else {
+        Swal.fire({
+            text: 'No tasks have been added yet.',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+          })
+    }
+}
 
 
 

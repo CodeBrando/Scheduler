@@ -8,11 +8,13 @@
 
 body{
     background-color: #151314;
+    
 }
 
 .collapse{
     display: flex;
     justify-content: space-around !important;
+    padding-right: 6%;
 }
 
 
@@ -26,6 +28,15 @@ body{
     display: flex;
     justify-content: center;
     color: #FFFF33;
+}
+
+.bannerTitle2{
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    display: flex;
+    justify-content: center;
+    color: #FFFF33;
+    
 }
 
 table{
@@ -79,4 +90,31 @@ select{
 
 .textoDigi2{
     color: #ff0157;
+}
+
+.workspace{
+    display: flex;
+    flex-direction: column;
+    padding-left: 2vh;
+    padding-right: 2vw;
+}
+
+.taskManager{
+    padding: 2%;
+    display: flex;
+    padding-left: 8%;
+}
+
+.taskManagerDelete{
+    padding-left: 20%;
+}
+
+.taskManagerTitle{
+    color: #FFFF33;
+}
+
+.form-control{
+    color: #373737;
+    width: 30vw;
+    
 }

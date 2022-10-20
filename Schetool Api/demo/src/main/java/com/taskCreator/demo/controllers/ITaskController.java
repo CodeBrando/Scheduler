@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
-@CrossOrigin(allowedHeaders = "*", allowCredentials = "*", origins = "*", originPatterns = "*")
+//@CrossOrigin(allowedHeaders = "*", allowCredentials = "*", origins = "*", originPatterns = "*")
 @RequestMapping("/api/v1/tasks")
 public interface ITaskController {
 
@@ -25,7 +25,8 @@ public interface ITaskController {
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     @Operation(summary = "Saves a new task")
-    @PostMapping(value = "create", consumes = APPLICATION_JSON, produces = APPLICATION_JSON)
+//    @CrossOrigin(allowedHeaders = "*", allowCredentials = "*", origins = "*", originPatterns = "*")
+    @PostMapping(value = "/create", consumes = APPLICATION_JSON, produces = APPLICATION_JSON)
     ResponseEntity<ResponseTO> saveTask(@ApiParam(value = "Task to create", required = true)
                                         @Valid @RequestBody TaskTO taskTO);
 
@@ -36,6 +37,7 @@ public interface ITaskController {
             @ApiResponse(responseCode = "500", description = "Server Error")
     })
     @Operation(summary = "Obtains all tasks")
-    @GetMapping(value = "obtain", produces = APPLICATION_JSON)
+//    @CrossOrigin(allowedHeaders = "*", allowCredentials = "*", origins = "*", originPatterns = "*")
+    @GetMapping(value = "/obtain", produces = APPLICATION_JSON)
     ResponseEntity<?> obtainTasks();
 }
