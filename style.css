@@ -2,19 +2,17 @@
 
 *{
     margin: 0;
-    padding-left: 0;
     font-family:'Ubuntu', sans-serif;
 }
 
 body{
-    background-color: #151314;
+    background-image: linear-gradient(to bottom right,#ff0157 , #1f1f1f);
     
 }
 
 .collapse{
     display: flex;
     justify-content: space-around !important;
-    padding-right: 6%;
 }
 
 
@@ -35,43 +33,44 @@ body{
     padding-bottom: 2vh;
     display: flex;
     justify-content: center;
-    color: #FFFF33;
+    color: #1f1f1f;
     
 }
 
+
 table{
-    border: 1px;
+    border: 0.19vw;
     text-align: center;
     border-radius: 0px;
     background: linear-gradient(145deg, #2e2e2e, #373737);
-    box-shadow: 9px 9px 18px #1f1f1f,
-                -9px -9px -18px #474747;
+    box-shadow: 1.782vw 1.782vw 1.782vw #1f1f1f,
+                -1.782vw -1.782vw -3.564vw #474747;
     width: 80vw;
     height: 70vh;
 }
 
 th{
-    border: 1px solid #151314;
+    border: 0.019vw solid #151314;
     color: #FFFF33;
     text-align: center;
 }
 th:hover{
     background: #ff0157;
     color: #fff;
-    box-shadow: 9px 9px 18px #1f1f1f,
-                -9px -9px -18px #474747;
+    box-shadow: 1.782vw 1.782vw 1.782vw #1f1f1f,
+                -1.782vw -1.782vw -3.564vw #474747;
 }
 
 td{
-    border: 1px solid #151314;
+    border: 0.019vw solid #151314;
     color: #FFFF33;
     text-align: center;
 }
 td:hover{
     background: #ff0157;
     color: #fff;
-    box-shadow: 9px 9px 18px #1f1f1f,
-                -9px -9px -18px #474747;
+    box-shadow: 1.782vw 1.782vw 3.564vw #1f1f1f,
+                -1.782vw -1.782vw -3.564vw #474747;
 }
 
 table.center{
@@ -82,15 +81,15 @@ table.center{
 select{
     color: #FFFF33;
     background-color: #151314;
+    max-width: 150px !important;
+    overflow: hidden;
 }
 
-.textoDigi{
-    color: #FFFF33;
+option{
+    max-width: 120px !important;
+    overflow: hidden;
 }
 
-.textoDigi2{
-    color: #ff0157;
-}
 
 .workspace{
     display: flex;
@@ -117,4 +116,9 @@ select{
     color: #373737;
     width: 30vw;
     
+}
+
+.backToTop{
+    display: flex;
+    justify-content: center;
 }

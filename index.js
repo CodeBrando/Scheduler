@@ -3,12 +3,15 @@ let tareas = []
 let celdas = Array.from(document.getElementsByClassName('celda'))
 const anadirTareaBotonJs = document.getElementById('anadirTareaBoton')
 const verTareasBotonJs = document.getElementById('verTareasBoton')
-const verTiemposBotonJs = document.getElementById('verTiemposBoton')
+const resetTasksBotonJs = document.getElementById('resetTasksBoton')
 const borrarBoton = document.getElementById('deleteButton')
 verTareasBotonJs.addEventListener('click', mostrarTareas)
-verTiemposBotonJs.addEventListener('click', mostrarTiempos)
+resetTasksBotonJs.addEventListener('click', resetTasks)
 borrarBoton.addEventListener('click', borrarTarea)
 const jsonUrl = 'https://jsonplaceholder.typicode.com/posts'
+let horasLibres = 84
+let horasUsadas = 0
+let tiempoLibre = 100
 
 
 
@@ -58,6 +61,7 @@ form.addEventListener('submit', function(e){
                 background: "linear-gradient(to right, #151314, #FFFF33)",
               },
         }).showToast()
+        form.reset()
     })
     
 
@@ -65,16 +69,7 @@ form.addEventListener('submit', function(e){
 
 
     
-// Método para mostrar tiempo usado y libre
-function mostrarTiempos(){
-    alert("Su cantidad de horas usadas es de: " + " " + horasUsadas)
-    alert("Tiene un %" + " " + calcularTiempoLibre(horasUsadas) + " " + "de tiempo libre en el día.")
-}
-function calcularTiempoLibre(horasUsadas){
-    horasLibres = 24 - horasUsadas
-    tiempoLibre = (horasUsadas*100)/24
-    return tiempoLibre
-}
+
 
 // Método para mostrar tareas agregadas
 
@@ -99,6 +94,9 @@ function mostrarTareas(){
 function borrarTarea(){
     if(tareas.length > 1){
         tareas.pop()
+        celdas.forEach(celda=>{
+            celda.removeChild(celda.lastChild)
+        })
         Swal.fire({
             title: 'Task eliminated succesfully, remaining tasks are: ',
             text: `${tareas.join(', ')}`,
@@ -108,6 +106,9 @@ function borrarTarea(){
 
     } else if(tareas.length === 1){
         tareas.pop()
+        celdas.forEach(celda=>{
+            celda.removeChild(celda.lastChild)
+        })
         Swal.fire({
             text: 'No more tasks remaining.',
             icon: 'success',
@@ -123,7 +124,21 @@ function borrarTarea(){
     }
 }
 
-
+function resetTasks(){
+    tareas = []
+    localStorage.removeItem("tasks")
+    celdas.forEach(celda=>{
+        celda.innerHTML = "";
+        const optionTable = document.createElement('option')
+        optionTable.innerText = "Empty"
+        celda.append(optionTable)
+        Swal.fire({
+            title: 'Task reseted succesfully',
+            icon: 'warning',
+            confirmButtonText: 'Ok'
+          })
+    })
+}
 
 
 
